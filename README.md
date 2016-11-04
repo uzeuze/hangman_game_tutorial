@@ -3,7 +3,7 @@
 * Create package.json file by running npm init -y
 
 * Install dependencies locally
-npm install --save react react-dom style-loader css-loader
+npm install --save react react-dom style-loader css-loader jquery
 
 * Install dev dependencies locally.
 npm install --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-react webpack webpack-dev-server react-bootstrap bootstrap@3
