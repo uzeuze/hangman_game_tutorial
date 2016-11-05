@@ -12,7 +12,8 @@ class App extends Component {
       word: "",
       guesses: [],
       gameStatus: "",
-      wrongGuessCount: 0
+      wrongGuesses: [],
+      isLoading: false
     }
   }
   componentDidMount() {
@@ -21,16 +22,24 @@ class App extends Component {
 
   newGame() {
     this.getNewWord();
-    this.setState({guesses: []});
+    this.setState({
+      guesses: [],
+      gameStatus: "",
+      wrongGuesses: []
+    });
   }
 
   getNewWord() {
+    this.setState({isLoading: true });
     $.ajax({
         type: "GET",
         url: "http://randomword.setgetgo.com/get.php",
         dataType: "jsonp",
         success: function(data){
-          this.setState({word: data.Word});
+          this.setState({
+            word: data.Word,
+            isLoading: false
+          });
         }.bind(this)
     });
   }
@@ -68,7 +77,7 @@ class App extends Component {
       }
     });
     if(wrongGuesses >= 6) {
-      this.setState({ gameStatus: "lose"});
+      this.setState({ gameStatus: "GAME OVER"});
     }
     word.split("").forEach((letter) => {
       if(guesses.indexOf(letter) !== -1) {
@@ -76,20 +85,40 @@ class App extends Component {
       }
     });
     if(word.length === correctGuesses) {
-      this.setState({ gameStatus: "win"});
+      this.setState({ gameStatus: "YOU WIN!"});
     }
   }
 
   render() {
+    let gameBox;
+    if(this.state.isLoading) {
+      gameBox = (
+        <h3>Loading...</h3>
+      );
+    } else if(this.state.gameStatus) {
+      gameBox = <h3>{this.state.gameStatus}</h3>;
+    } else {
+      gameBox = (
+        <div>
+          <WordToGuess word={this.state.word} guesses={this.state.guesses}/>
+          <GuessForm handleGuess={this.handleGuess.bind(this)}/>
+        </div>
+      );
+    }
     return (
       <div className="container">
         <h1 className="text-center">Hangman Game</h1>
-        <h2>Game Status: {this.state.gameStatus}</h2>
-        <WordToGuess word={this.state.word} guesses={this.state.guesses}/>
-        <GuessForm handleGuess={this.handleGuess.bind(this)}/>
+        {gameBox}
         <NewGameButton newGame={this.newGame.bind(this)}/>
-        <p>Wrong Guesses: {this.state.wrongGuesses}</p>
-        <HangmanCanvas wrongCount={this.state.wrongGuesses ? this.state.wrongGuesses.length : 0}/>
+
+        { this.state.wrongGuesses.length > 0 ?
+          <p>Wrong Guesses: {this.state.wrongGuesses}</p>
+          :
+          ""
+        }
+        <div>
+          <HangmanCanvas wrongCount={this.state.wrongGuesses ? this.state.wrongGuesses.length : 0}/>          
+        </div>
       </div>
     );
   }
