@@ -9,7 +9,8 @@ class App extends Component {
     super();
     this.state = {
       word: "",
-      guesses: []
+      guesses: [],
+      gameStatus: ""
     }
   }
   componentDidMount() {
@@ -39,7 +40,31 @@ class App extends Component {
         NewGuesses.push(guess);
       }
     });
+    this.checkWinOrLose();
     this.setState({guesses: NewGuesses});
+  }
+
+  checkWinOrLose() {
+    let guesses = this.state.guesses;
+    let correctGuesses = 0,
+        wrongGuesses = 0;
+    let word = this.state.word;
+    guesses.forEach((letter) => {
+      if(word.indexOf(letter) === -1) {
+        wrongGuesses += 1;
+      }
+    });
+    if(wrongGuesses >= 6) {
+      this.setState({ gameStatus: "lose"});
+    }
+    word.split("").forEach((letter) => {
+      if(guesses.indexOf(letter) !== -1) {
+        correctGuesses += 1;
+      }
+    });
+    if(word.length === correctGuesses) {
+      this.setState({ gameStatus: "win"});
+    }
   }
 
   render() {
@@ -53,6 +78,7 @@ class App extends Component {
     return (
       <div>
         <h1 className="text-center">Hangman Game</h1>
+        <h2>Game Status: {this.state.gameStatus}</h2>
         <WordToGuess word={this.state.word} guesses={this.state.guesses}/>
         <GuessForm handleGuess={this.handleGuess.bind(this)}/>
         <NewGameButton newGame={this.newGame.bind(this)}/>
