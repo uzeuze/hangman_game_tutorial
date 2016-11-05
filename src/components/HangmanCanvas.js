@@ -5,10 +5,6 @@ export default class HangmanCanvas extends Component {
       this.updateCanvas(this.props.wrongCount);
   }
 
-  shouldComponentUpdate() {
-      return true;
-  }
-
   componentWillReceiveProps(newProps) {
       this.updateCanvas(newProps.wrongCount);
   }
