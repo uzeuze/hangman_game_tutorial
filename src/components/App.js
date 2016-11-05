@@ -3,6 +3,8 @@ import WordToGuess from './WordToGuess';
 import NewGameButton from './NewGameButton';
 import GuessForm from './GuessForm';
 import HangmanCanvas from './HangmanCanvas';
+import {Grid, Row, Col} from 'react-bootstrap';
+
 import $ from 'jquery';
 
 class App extends Component {
@@ -106,19 +108,25 @@ class App extends Component {
       );
     }
     return (
-      <div className="container">
+      <div>
         <h1 className="text-center">Hangman Game</h1>
-        {gameBox}
-        <NewGameButton newGame={this.newGame.bind(this)}/>
+        <Grid>
+          <Row>
+            <Col sm={6} smPush={6}>
+              <HangmanCanvas wrongCount={this.state.wrongGuesses ? this.state.wrongGuesses.length : 0}/>
+            </Col>
+            <Col sm={6} smPull={6}>
+              {gameBox}
+              <NewGameButton newGame={this.newGame.bind(this)}/>
 
-        { this.state.wrongGuesses.length > 0 ?
-          <p>Wrong Guesses: {this.state.wrongGuesses}</p>
-          :
-          ""
-        }
-        <div>
-          <HangmanCanvas wrongCount={this.state.wrongGuesses ? this.state.wrongGuesses.length : 0}/>          
-        </div>
+              { this.state.wrongGuesses.length > 0 ?
+                <p>Wrong Guesses: {this.state.wrongGuesses}</p>
+                :
+                ""
+              }
+            </Col>
+          </Row>
+        </Grid>
       </div>
     );
   }
