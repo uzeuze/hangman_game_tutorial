@@ -12,3 +12,12 @@ body {
    border: none;
    border-radius: 0;
 }
+
+.wrong-guesses {
+  font-size: 18px;
+}
+
+.wrong-guessed-letter {
+  margin: 5px;
+  color: red;
+}

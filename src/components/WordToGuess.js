@@ -16,7 +16,7 @@ export default class WordToGuess extends Component {
   render() {
     let display = this.getDisplay();
     return (
-      <div>
+      <div className="word-to-guess">
         {display}
       </div>
     );

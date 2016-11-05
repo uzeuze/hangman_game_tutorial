@@ -9,9 +9,7 @@
   border-radius: 0;
 }
 
-@media (max-width: 768px) {
-  .guessForm {
-    width: 100px;
-    margin: 0 auto;
-  }
+.guessForm {
+  width: 100px;
+  margin: 0 auto;
 }

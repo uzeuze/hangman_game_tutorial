@@ -92,7 +92,9 @@ class App extends Component {
   }
 
   render() {
-    let gameBox;
+    let gameBox,
+        wrongGuesses;
+    let wrongArr = this.state.wrongGuesses.slice();
     if(this.state.isLoading) {
       gameBox = (
         <h3>Loading...</h3>
@@ -104,16 +106,19 @@ class App extends Component {
         <GuessForm handleGuess={this.handleGuess.bind(this)}/>
       );
     }
+    wrongGuesses = wrongArr.map((letter, i) => {
+      return <span className="wrong-guessed-letter" key={i}>{letter}</span>
+    });
     return (
       <div className="text-center">
         <h1>Hangman Game</h1>
-        <WordToGuess className="word-to-guess" word={this.state.word} guesses={this.state.guesses}/>
+        <WordToGuess word={this.state.word} guesses={this.state.guesses}/>
         <Grid>
           <Row>
             <Col sm={6} smPush={6}>
               {gameBox}
               { this.state.wrongGuesses.length > 0 ?
-                <p>Wrong Guesses: {this.state.wrongGuesses}</p>
+                <p className="wrong-guesses">Wrong Guesses: {wrongGuesses}</p>
                 :
                 ""
               }
