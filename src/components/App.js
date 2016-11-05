@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import WordToGuess from './WordToGuess';
 import NewGameButton from './NewGameButton';
 import GuessForm from './GuessForm';
+import HangmanCanvas from './HangmanCanvas';
 import $ from 'jquery';
 
 class App extends Component {
@@ -10,7 +11,8 @@ class App extends Component {
     this.state = {
       word: "",
       guesses: [],
-      gameStatus: ""
+      gameStatus: "",
+      wrongGuessCount: 0
     }
   }
   componentDidMount() {
@@ -35,13 +37,24 @@ class App extends Component {
 
   handleGuess(input) {
     let NewGuesses = this.state.guesses;
+    let word = this.state.word;
+    let wrongGuesses = [];
     input.split("").forEach((guess) => {
       if(guess !== " " && NewGuesses.indexOf(guess) === -1) {
         NewGuesses.push(guess);
       }
     });
+    NewGuesses.forEach((letter) => {
+      if(word.indexOf(letter) === -1) {
+        wrongGuesses.push(letter);
+      }
+    });
+
     this.checkWinOrLose();
-    this.setState({guesses: NewGuesses});
+    this.setState({
+      guesses: NewGuesses,
+      wrongGuesses: wrongGuesses
+    });
   }
 
   checkWinOrLose() {
@@ -68,21 +81,15 @@ class App extends Component {
   }
 
   render() {
-    let word = this.state.word;
-    let guesses = this.state.guesses;
-    let wrongGuesses = guesses.map((letter) => {
-      if(word.indexOf(letter) === -1) {
-        return letter;
-      }
-    });
     return (
-      <div>
+      <div className="container">
         <h1 className="text-center">Hangman Game</h1>
         <h2>Game Status: {this.state.gameStatus}</h2>
         <WordToGuess word={this.state.word} guesses={this.state.guesses}/>
         <GuessForm handleGuess={this.handleGuess.bind(this)}/>
         <NewGameButton newGame={this.newGame.bind(this)}/>
-        <p>Wrong Guesses: {wrongGuesses}</p>
+        <p>Wrong Guesses: {this.state.wrongGuesses}</p>
+        <HangmanCanvas wrongCount={this.state.wrongGuesses ? this.state.wrongGuesses.length : 0}/>
       </div>
     );
   }
