@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {FormGroup, FormControl, InputGroup, Button} from 'react-bootstrap';
+import '../styles/GuessForm.css';
 
 export default class GuessForm extends Component {
   constructor() {
@@ -23,14 +24,14 @@ export default class GuessForm extends Component {
     return (
       <form className="guessForm" onSubmit={this.handleSubmit.bind(this)} >
         <FormGroup>
-          <InputGroup>
+          <InputGroup className="guess-input">
             <FormControl type="text"
-                         className="guess-input"
                          value={this.state.textValue}
                          onChange={this.handleChange.bind(this)}
+                         autoFocus={true}
             />
+            <InputGroup.Addon className="btn-guess" onClick={this.handleSubmit.bind(this)}>Guess</InputGroup.Addon>
           </InputGroup>
-          <Button type="submit">Guess</Button>
         </FormGroup>
       </form>
     );

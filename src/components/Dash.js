@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import '../styles/Dash.css';
 
 export default class Dash extends Component {
   render() {

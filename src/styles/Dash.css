@@ -1,0 +1,9 @@
+.dash-item {
+  font-size: 50px;
+}
+
+@media (max-width: 768px) {
+  .dash-item {
+    font-size: 20px;
+  }
+}

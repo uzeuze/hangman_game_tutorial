@@ -18,7 +18,6 @@ export default class WordToGuess extends Component {
     return (
       <div>
         {display}
-        <h6>{this.props.word}</h6>
       </div>
     );
   }

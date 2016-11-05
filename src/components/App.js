@@ -101,32 +101,29 @@ class App extends Component {
       gameBox = <h3>{this.state.gameStatus}</h3>;
     } else {
       gameBox = (
-        <div>
-          <WordToGuess word={this.state.word} guesses={this.state.guesses}/>
-          <GuessForm handleGuess={this.handleGuess.bind(this)}/>
-        </div>
+        <GuessForm handleGuess={this.handleGuess.bind(this)}/>
       );
     }
     return (
-      <div>
-        <h1 className="text-center">Hangman Game</h1>
+      <div className="text-center">
+        <h1>Hangman Game</h1>
+        <WordToGuess className="word-to-guess" word={this.state.word} guesses={this.state.guesses}/>
         <Grid>
           <Row>
             <Col sm={6} smPush={6}>
-              <HangmanCanvas wrongCount={this.state.wrongGuesses ? this.state.wrongGuesses.length : 0}/>
-            </Col>
-            <Col sm={6} smPull={6}>
               {gameBox}
-              <NewGameButton newGame={this.newGame.bind(this)}/>
-
               { this.state.wrongGuesses.length > 0 ?
                 <p>Wrong Guesses: {this.state.wrongGuesses}</p>
                 :
                 ""
               }
             </Col>
+            <Col sm={6} smPull={6}>
+              <HangmanCanvas wrongCount={this.state.wrongGuesses ? this.state.wrongGuesses.length : 0}/>
+            </Col>
           </Row>
         </Grid>
+        <NewGameButton newGame={this.newGame.bind(this)}/>
       </div>
     );
   }

@@ -17,18 +17,18 @@ export default class HangmanCanvas extends Component {
     canvas.width = canvas.width;
     let c = canvas.getContext('2d');
     c.lineWidth = 10;
-    c.strokeStyle = '#000';
+    c.strokeStyle = '#F2D95E';
     c.font = 'bold 24px Optimer, Arial, Helvetica, sans-serif';
     c.fillStyle = 'red';
     drawLine(c, [20,190], [180,190]);
     drawLine(c, [30,185], [30,10]);
     c.lineTo(147,10);
     c.stroke();
-    c.strokeStyle = 'black';
     c.lineWidth = 3;
     drawLine(c, [145,15], [145,30]);
     if (badGuesses > 0) {
         // draw head
+        c.strokeStyle = '#6F6E72';
         c.beginPath();
         c.moveTo(160, 45);
         c.arc(145, 45, 15, 0, (Math.PI/180)*360);
@@ -66,7 +66,7 @@ export default class HangmanCanvas extends Component {
   }
   render() {
       return (
-          <canvas ref="canvas" width={300} height={300}/>
+          <canvas ref="canvas" width={200} height={200}/>
       );
   }
 }

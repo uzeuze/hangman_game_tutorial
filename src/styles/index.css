@@ -1,3 +1,14 @@
 body {
-  background-color: yellow;
+  background-color: #87D1D4;
+}
+
+.word-to-guess {
+  margin-bottom: 40px;
+}
+
+.btn-new-game, .btn-new-game:hover, .btn-new-game:active:focus, .btn-new-game:focus {
+   background-color: #FF5722;
+   color: #fff;
+   border: none;
+   border-radius: 0;
 }

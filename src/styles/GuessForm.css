@@ -1,0 +1,17 @@
+.guess-input {
+  width: 100px;
+}
+
+.btn-guess {
+  background-color: #00897b;
+  color: #fff;
+  border: none;
+  border-radius: 0;
+}
+
+@media (max-width: 768px) {
+  .guessForm {
+    width: 100px;
+    margin: 0 auto;
+  }
+}
