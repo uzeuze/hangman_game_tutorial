@@ -6,7 +6,7 @@
 npm install --save react react-dom style-loader css-loader jquery
 
 * Install dev dependencies locally.
-npm install --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-react webpack webpack-dev-server react-bootstrap bootstrap@3
+npm install --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-react webpack webpack-dev-server react-bootstrap
 
 * Create public folder.
   Add index.html to public folder.
