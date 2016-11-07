@@ -1,15 +1,15 @@
-.guess-input {
+.GuessForm {
+  width: 120px;
+  margin: 0 auto;
+}
+
+.GuessForm__input {
   width: 120px;
 }
 
-.btn-guess {
+.GuessForm__button {
   background-color: #00897b;
   color: #fff;
   border: none;
   border-radius: 0;
-}
-
-.guessForm {
-  width: 120px;
-  margin: 0 auto;
 }

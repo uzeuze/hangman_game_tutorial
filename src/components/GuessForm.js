@@ -9,6 +9,7 @@ export default class GuessForm extends Component {
         textValue: ""
       }
       this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
@@ -23,17 +24,17 @@ export default class GuessForm extends Component {
 
   render() {
     return (
-      <form className="guessForm" onSubmit={this.handleSubmit.bind(this)} >
+      <form className="GuessForm" onSubmit={this.handleSubmit} >
         <FormGroup>
-          <InputGroup className="guess-input">
+          <InputGroup className="GuessForm__input">
             <FormControl
               type="text"
               value={this.state.textValue}
-              onChange={this.handleChange.bind(this)}
+              onChange={this.handleChange}
               autoFocus={true}
             />
             <InputGroup.Addon
-              className="btn-guess"
+              className="GuessForm__button"
               onClick={this.handleSubmit}
             >
               Guess

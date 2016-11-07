@@ -2,19 +2,18 @@ body {
   background-color: #87D1D4;
 }
 
-.word-to-guess {
+.WordToGuess {
   margin-bottom: 40px;
 }
 
-.btn-new-game, .btn-new-game:hover, .btn-new-game:active:focus, .btn-new-game:focus {
+.NewGameButton, 
+.NewGameButton:hover, 
+.NewGameButton:active:focus, 
+.NewGameButton:focus {
    background-color: #FF5722;
    color: #fff;
    border: none;
    border-radius: 0;
-}
-
-.wrong-guesses {
-  font-size: 18px;
 }
 
 .wrong-guessed-letter {

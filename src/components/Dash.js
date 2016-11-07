@@ -3,7 +3,7 @@ import '../styles/Dash.css';
 
 export default function Dash(props) {
   return (
-    <span className="dash-item">
+    <span className="Dash">
       {
         props.display
         ? `  ${props.display}  `

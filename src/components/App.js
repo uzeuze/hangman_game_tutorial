@@ -5,6 +5,7 @@ import GuessForm from './GuessForm';
 import HangmanCanvas from './HangmanCanvas';
 import {Grid, Row, Col} from 'react-bootstrap';
 import $ from 'jquery';
+import '../styles/App.css';
 
 class App extends Component {
   constructor() {
@@ -39,7 +40,7 @@ class App extends Component {
         dataType: "jsonp",
         success: function(data){
           this.setState({
-            word: data.Word,
+            word: data.Word.toLowerCase(),
             isLoading: false
           });
         }.bind(this)
@@ -52,6 +53,7 @@ class App extends Component {
     let wrongGuesses = [];
 
     input.split("").forEach((guess) => {
+      guess = guess.toLowerCase();
       if(guess !== " " && NewGuesses.indexOf(guess) === -1) {
         NewGuesses.push(guess);
       }
@@ -119,7 +121,7 @@ class App extends Component {
     });
 
     return (
-      <div className="text-center">
+      <div className="App text-center">
         <h1>Hangman Game</h1>
         <WordToGuess word={this.state.word} guesses={this.state.guesses}/>
         <Grid>
@@ -128,7 +130,7 @@ class App extends Component {
               {gameBox}
               {
                 this.state.wrongGuesses.length > 0
-                  ? <p className="wrong-guesses">Wrong Guesses: {wrongGuesses}</p>
+                  ? <p className="App__wrong-guesses">Wrong Guesses: {wrongGuesses}</p>
                   :
                   ""
               }

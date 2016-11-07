@@ -1,9 +1,9 @@
-.dash-item {
+.Dash {
   font-size: 50px;
 }
 
 @media (max-width: 768px) {
-  .dash-item {
+  .Dash {
     font-size: 20px;
   }
 }
