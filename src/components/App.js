@@ -4,7 +4,6 @@ import NewGameButton from './NewGameButton';
 import GuessForm from './GuessForm';
 import HangmanCanvas from './HangmanCanvas';
 import {Grid, Row, Col} from 'react-bootstrap';
-
 import $ from 'jquery';
 
 class App extends Component {
@@ -17,6 +16,7 @@ class App extends Component {
       wrongGuesses: [],
       isLoading: false
     }
+    this.newGame = this.newGame.bind(this);
   }
   componentDidMount() {
     this.getNewWord();
@@ -50,11 +50,13 @@ class App extends Component {
     let NewGuesses = this.state.guesses;
     let word = this.state.word;
     let wrongGuesses = [];
+
     input.split("").forEach((guess) => {
       if(guess !== " " && NewGuesses.indexOf(guess) === -1) {
         NewGuesses.push(guess);
       }
     });
+
     NewGuesses.forEach((letter) => {
       if(word.indexOf(letter) === -1) {
         wrongGuesses.push(letter);
@@ -73,19 +75,23 @@ class App extends Component {
     let correctGuesses = 0,
         wrongGuesses = 0;
     let word = this.state.word;
+
     guesses.forEach((letter) => {
       if(word.indexOf(letter) === -1) {
         wrongGuesses += 1;
       }
     });
+
     if(wrongGuesses >= 6) {
       this.setState({ gameStatus: "GAME OVER"});
     }
+
     word.split("").forEach((letter) => {
       if(guesses.indexOf(letter) !== -1) {
         correctGuesses += 1;
       }
     });
+
     if(word.length === correctGuesses) {
       this.setState({ gameStatus: "YOU WIN!"});
     }
@@ -95,6 +101,7 @@ class App extends Component {
     let gameBox,
         wrongGuesses;
     let wrongArr = this.state.wrongGuesses.slice();
+
     if(this.state.isLoading) {
       gameBox = (
         <h3>Loading...</h3>
@@ -106,9 +113,11 @@ class App extends Component {
         <GuessForm handleGuess={this.handleGuess.bind(this)}/>
       );
     }
+
     wrongGuesses = wrongArr.map((letter, i) => {
       return <span className="wrong-guessed-letter" key={i}>{letter}</span>
     });
+
     return (
       <div className="text-center">
         <h1>Hangman Game</h1>
@@ -117,10 +126,11 @@ class App extends Component {
           <Row>
             <Col sm={6} smPush={6}>
               {gameBox}
-              { this.state.wrongGuesses.length > 0 ?
-                <p className="wrong-guesses">Wrong Guesses: {wrongGuesses}</p>
-                :
-                ""
+              {
+                this.state.wrongGuesses.length > 0
+                  ? <p className="wrong-guesses">Wrong Guesses: {wrongGuesses}</p>
+                  :
+                  ""
               }
             </Col>
             <Col sm={6} smPull={6}>
@@ -128,7 +138,7 @@ class App extends Component {
             </Col>
           </Row>
         </Grid>
-        <NewGameButton newGame={this.newGame.bind(this)}/>
+        <NewGameButton newGame={this.newGame}/>
       </div>
     );
   }
