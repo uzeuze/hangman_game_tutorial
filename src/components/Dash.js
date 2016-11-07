@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import '../styles/Dash.css';
 
-export default class Dash extends Component {
-  render() {
-    return (
-      <span className="dash-item">
-        {this.props.display ?
-          `  ${this.props.display}  ` : "  _  "
-        }
-      </span>
-    );
-  }
+export default function Dash(props) {
+  return (
+    <span className="dash-item">
+      {
+        props.display
+        ? `  ${props.display}  `
+        : "  _  "
+      }
+    </span>
+  );
 }

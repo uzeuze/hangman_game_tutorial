@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 export default class HangmanCanvas extends Component {
+
   componentDidMount() {
       this.updateCanvas(this.props.wrongCount);
   }
@@ -8,6 +9,7 @@ export default class HangmanCanvas extends Component {
   componentWillReceiveProps(newProps) {
       this.updateCanvas(newProps.wrongCount);
   }
+
   updateCanvas(badGuesses) {
     let canvas = this.refs.canvas;
     canvas.width = canvas.width;
@@ -60,6 +62,7 @@ export default class HangmanCanvas extends Component {
       context.stroke();
     }
   }
+  
   render() {
       return (
           <canvas ref="canvas" width={200} height={200}/>
