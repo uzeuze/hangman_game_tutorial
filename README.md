@@ -24,11 +24,11 @@ To create a package.json file with defaults, run the following command on the te
 
 Install project dependencies locally with:
 
-`npm install --save react react-dom style-loader css-loader jquery react-bootstrap`
+`npm install --save react react-dom jquery react-bootstrap`
 
 Install dev dependencies locally with:
 
-`npm install --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-react webpack webpack-dev-server`
+`npm install --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-react webpack webpack-dev-server style-loader css-loader`
 
 Create public folder.
 Add index.html to public folder. Add Bootstrap CDN to include Bootstrap's CSS styles.
